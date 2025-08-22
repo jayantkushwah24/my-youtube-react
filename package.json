@@ -25,5 +25,18 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
     "vite": "^7.1.2"
-  }
+  },
+  "description": "",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayantkushwah24/my-youtube-react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jayantkushwah24/my-youtube-react/issues"
+  },
+  "homepage": "https://github.com/jayantkushwah24/my-youtube-react#readme"
 }
