@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   if (!isMenuOpen) return null;
-  
+
   return (
-    <div className=" overflow-y-auto pb-20 fixed h-[100vh]  bg-white shadow-md">
+    <div className=" overflow-y-auto pb-20  h-[100vh]  bg-white shadow-md">
       <div id="first-section" className="shadow m-3 w-2xs">
         <div
           id="home"
