@@ -6,7 +6,7 @@ const Sidebar = () => {
   if (!isMenuOpen) return null;
 
   return (
-    <div className=" overflow-y-auto pb-20  h-[100vh]  bg-white shadow-md">
+    <div className=" overflow-y-auto  pb-20 sticky left-0 top-20 h-[100vh]  bg-white shadow-md min-w-[20vw]">
       <div id="first-section" className="shadow m-3 w-2xs">
         <div
           id="home"

@@ -9,7 +9,7 @@ const Head = () => {
   };
 
   return (
-    <div className="flex justify-between items-center center shadow h-fit">
+    <div className="flex justify-between items-center center shadow h-fit sticky top-0 bg-white z-50">
       <div id="left-header" className="flex mx-5">
         {/* menu svg */}
         <svg
