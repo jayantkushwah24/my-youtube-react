@@ -1,16 +1,24 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "../utils/appSlice.js";
 
 const Head = () => {
+  const dispatch = useDispatch();
+  const toggleMenuHandler = () => {
+    dispatch(toggleMenu());
+  };
+
   return (
     <div className="flex justify-between items-center center shadow h-fit">
-      {/* menu svg */}
       <div id="left-header" className="flex mx-5">
+        {/* menu svg */}
         <svg
+          onClick={() => toggleMenuHandler()}
           xmlns="http://www.w3.org/2000/svg"
           width="200"
           height="200"
           viewBox="0 0 24 24"
-          className="h-8 w-fit my-3 mx-2"
+          className="h-8 w-fit my-3 mx-2 cursor-pointer"
         >
           <path
             fill="currentColor"
