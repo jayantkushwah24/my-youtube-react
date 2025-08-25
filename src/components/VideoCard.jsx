@@ -6,7 +6,7 @@ const VideoCard = ({ data }) => {
     <div className="m-4">
       <img
         className="h-[30vh] w-[31vw] rounded-2xl object-cover"
-        src={thumbnails.standard.url}
+        src={thumbnails.high.url}
         alt="thumbnail"
       />
       <h1 className="text-lg font-medium leading-snug mt-2 text-black overflow-hidden text-ellipsis line-clamp-2">
