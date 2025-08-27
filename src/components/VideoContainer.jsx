@@ -13,7 +13,6 @@ const VideoContainer = () => {
     const response = await fetch(YOUTUBE_VIDEOS_API);
     const data = await response.json();
     setVideoApiData(data.items);
-    console.log(data.items);
   };
 
   useEffect(() => {
@@ -28,8 +27,8 @@ const VideoContainer = () => {
   return (
     <div className="grid grid-cols-3">
       {videoApiData.map((data) => (
-        <Link to={"/watch?v=" + data.id}>
-          <VideoCard key={data.id} data={data} />
+        <Link key={data.id} to={"/watch?v=" + data.id}>
+          <VideoCard data={data} />
         </Link>
       ))}
     </div>

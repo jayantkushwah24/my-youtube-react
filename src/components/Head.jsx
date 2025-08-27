@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice.js";
+import { YOUTUBE_SEARCH_API } from "../utils/constants.js";
 
 const Head = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      getSearchSuggestion();
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
+
+  const getSearchSuggestion = async () => {
+    const response = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    const data = await response.json();
+    setSuggestions(Array.isArray(data[1]) ? data[1] : []);
+  };
+
   const dispatch = useDispatch();
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
@@ -44,28 +63,32 @@ const Head = () => {
           />
         </svg>
       </div>
-      {/* search bar */}
-      <div id="middle-header" className="border-1 rounded-full h-11 my-4 flex">
-        <input
-          type="text"
-          placeholder="Search"
-          className=" w-lg h-10  placeholder:text-center  "
-        />
-        <button type="submit" className=" bg-slate-200 rounded-r-full">
-          {/* search svg */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="200"
-            height="200"
-            viewBox="0 0 20 20"
-            className="h-5 w-19 "
-          >
-            <path
-              fill="currentColor"
-              d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33l-1.42 1.42l-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
-            />
-          </svg>
-        </button>
+      {/* Middle (Search Bar + Suggestions) */}
+      <div className="flex flex-col relative w-1/2">
+        <div className="flex border rounded-full overflow-hidden">
+          <input
+            type="text"
+            placeholder="Search"
+            className="flex-1 h-10 px-4 focus:outline-none"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button className="bg-slate-200 px-3">🔍</button>
+        </div>
+
+        {/* Suggestions dropdown */}
+        {suggestions.length > 0 && (
+          <div className="absolute top-12 left-0 w-full bg-white border rounded-lg shadow-md z-50">
+            {suggestions.map((s, index) => (
+              <div
+                key={index}
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              >
+                {s}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       {/* notification svg */}
       <div id="right-header" className="flex mx-5">
